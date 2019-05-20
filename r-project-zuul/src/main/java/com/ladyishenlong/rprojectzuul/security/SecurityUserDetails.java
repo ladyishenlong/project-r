@@ -1,6 +1,9 @@
 package com.ladyishenlong.rprojectzuul.security;
 
 import com.ladyishenlong.rprojectzuul.model.UserModel;
+import com.ladyishenlong.rprojectzuul.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -24,21 +27,18 @@ import java.util.List;
 public class SecurityUserDetails implements UserDetailsService {
 
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-
+        UserModel userModel =userService.findUserByUsername(username);
+        if(userModel==null)throw new UsernameNotFoundException(username);
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
-        UserModel userModel = new UserModel();
-        userModel.setUsername("123");
-        userModel.setPassword("123");
-        userModel.setRoles("123");
-
 
         List<GrantedAuthority> authorities = Collections.singletonList(
                 new SimpleGrantedAuthority(userModel.getRoles()));
-
         return new User(userModel.getUsername(),
                 encoder.encode(userModel.getPassword()),
                 authorities);

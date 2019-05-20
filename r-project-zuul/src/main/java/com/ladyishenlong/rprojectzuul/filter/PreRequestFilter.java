@@ -7,10 +7,13 @@ package com.ladyishenlong.rprojectzuul.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,12 +22,19 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author langpf 2018/12/21
  */
-
+@Slf4j
 @Configuration
-public class PreRequestSessionFilter extends ZuulFilter {
-    private static final Logger log = LoggerFactory.getLogger(PreRequestSessionFilter.class);
+public class PreRequestFilter extends ZuulFilter {
 
 
+    /**
+     * 1、pre：请求在路由之前被调用,如:身份验证；
+     * 2、route：请求在路由时被调用；
+     * 3、post：路由到微服务之后执行(在route和error过滤器之后被调用)；
+     * 4、error：处理请求发生错误时被调用；
+     *
+     * @return
+     */
     @Override
     public String filterType() {
         return "pre";
@@ -51,15 +61,14 @@ public class PreRequestSessionFilter extends ZuulFilter {
      */
     @Override
     public Object run() {
-        RequestContext ctx = RequestContext.getCurrentContext();
-        HttpServletRequest httpServletRequest=ctx.getRequest();
-        String sessionId = httpServletRequest.getSession().getId();
+        RequestContext requestContext = RequestContext.getCurrentContext();
+        HttpServletRequest request = requestContext.getRequest();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         log.info("--------------------------------------------------");
-        log.info("sessionId: " + sessionId);
+        log.info("请求的用户名：{}", auth.getName());
+        log.info("请求地址：{}", request.getRequestURL());
         log.info("--------------------------------------------------");
-        ctx.addZuulRequestHeader("Cookie", "SESSION=" + sessionId);
-        ctx.setSendZuulResponse(true);  // 对该请求进行路由
-        ctx.setResponseStatusCode(200); // 返回200正确响应
+        requestContext.addZuulRequestHeader("username",auth.getName());
         return null;
     }
 }
