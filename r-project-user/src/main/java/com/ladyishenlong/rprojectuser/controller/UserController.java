@@ -1,8 +1,7 @@
 package com.ladyishenlong.rprojectuser.controller;
 
-import com.ladyishenlong.rprojectuser.mapper.UserMapper;
 import com.ladyishenlong.rprojectuser.model.UserModel;
-import io.netty.util.internal.SuppressJava6Requirement;
+import com.ladyishenlong.rprojectuser.service.impl.UserImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.ladyishenlong.rprojectuser.service.mapper.UserMapper;
 
 /**
  * @Author ruanchenhao
@@ -30,16 +30,37 @@ public class UserController {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    @Autowired
+    private UserImpl userImpl;
 
 
     /**
      * 获取用户信息的，以redis作为缓存工具
-     *
+     * 通过注解方式来存入/获取缓存，返回值就是value
+     * <p>
      * @param username
      * @return
      */
     @GetMapping("/findUserByUsername")
     public UserModel findUserByUsername(@RequestParam("username") String username) {
+        return userImpl.findUserByUsername(username);
+    }
+
+
+
+
+
+
+
+    /**
+     * 获取用户信息的，以redis作为缓存工具
+     * 这种是手动存取数据的方式
+     *
+     * @param username
+     * @return
+     */
+    @GetMapping("/findUserByUsername2")
+    public UserModel findUserByUsername2(@RequestParam("username") String username) {
         ValueOperations<String, UserModel> operations = redisTemplate.opsForValue();
 
         UserModel userModel;
