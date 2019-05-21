@@ -1,7 +1,7 @@
 <template>
 
   <!--  model表单数据类型 rules 表单数据类型验证规则 -->
-  <Form id="form_login" ref="userModel" :model="userModel" :rules="userRule" >
+  <Form id="form_login" ref="userModel" :model="userModel" :rules="userRule">
 
     <!-- prop对应表单model里面对应的字段   -->
     <FormItem prop="username">
@@ -19,13 +19,12 @@
     <FormItem>
       <Button type="primary" @click="login('userModel')">login</Button>
     </FormItem>
-
   </Form>
-
-
 </template>
 
 <script>
+  import  json from "autoprefixer";
+
   export default {
     name: "LoginPage",
     data() {
@@ -47,11 +46,35 @@
       }
     },
     methods: {
-      login(data) {
+
+      login(userData) {
         console.log("检查");
-        this.$refs[data].validate((valid) => {
+        this.$refs[userData].validate((valid) => {
           if (valid) {
+            console.log("开始网络请求");
+
+
+            const params = new URLSearchParams();
+            params.append('username', '123');
+            params.append('password', '123');
+
+            this.$axios
+              .post("http://localhost:8003/user/login", params,
+                {
+                  headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                  }
+                })
+              .then(function (result) {
+                alert("请求成功：" + result.headers.toString())
+              })
+              .catch(function (error) {
+                console.log("请求异常：" + error)
+              });
+
             this.$Message.success('Success!');
+
+
           } else {
             this.$Message.error('Fail!');
           }

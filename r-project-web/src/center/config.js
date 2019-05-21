@@ -1,1 +1,1 @@
-const baseUrl = "localhost:8003/";
+const baseUrl = "http://localhost:8003/";
