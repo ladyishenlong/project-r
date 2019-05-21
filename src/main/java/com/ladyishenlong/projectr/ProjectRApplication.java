@@ -5,13 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
- * project R
- *
- * r-project- 后台服务
- * r-web-  前端页面
- *
+ * project r
  */
-
 @EnableEurekaServer
 @SpringBootApplication
 public class ProjectRApplication {

@@ -62,16 +62,16 @@
         msg: 'this is  HomePage'
       }
     }, methods: {
-      test() {
-        alert("666")
-      },
-
       hello: function () {
         console.log("网络请求开始");
         axios
-          .get("http://localhost:8003/test/test/hello")
+          .get("http://localhost:8003/test/test/hello", {
+            headers: {
+              "content-type": "application/json;charset=UTF-8"
+            }
+          })
           .then(function (data) {
-            alert("请求成功：" + data)
+            alert("请求成功：" + data.data)
           })
           .catch(function (error) {
             console.log("请求异常：" + error)
@@ -79,7 +79,6 @@
       }
     }
   }
-
 </script>
 
 
