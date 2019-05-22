@@ -14,6 +14,7 @@ import org.springframework.session.web.http.HeaderHttpSessionIdResolver;
  * <p>
  * 使用redis 保存 共享session
  * 可能可以实现网关之间共享session
+ * 网关重启之后session 依然可用，在缓存中重启之后会清空
  */
 @EnableRedisHttpSession(redisFlushMode = RedisFlushMode.IMMEDIATE)
 public class HttpSessionConfig {

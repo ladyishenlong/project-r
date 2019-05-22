@@ -19,16 +19,10 @@
     <FormItem>
       <Button type="primary" @click="login('userModel')">login</Button>
     </FormItem>
-
-    <FormItem>
-      <Button type="success" @click="toTest">跳转test</Button>
-    </FormItem>
   </Form>
 </template>
 
 <script>
-  import  json from "autoprefixer";
-
   export default {
     name: "LoginPage",
     data() {
@@ -50,22 +44,14 @@
       }
     },
     methods: {
-      toTest(){
-        this.$router.push("/test")
-      },
-
-
       login(userData) {
         console.log("检查");
         this.$refs[userData].validate((valid) => {
           if (valid) {
             console.log("开始网络请求");
-
             const params = new URLSearchParams();
-            params.append('username', '123');
-            params.append('password', '123');
-
-
+            params.append('username', this.userModel.username);
+            params.append('password', this.userModel.password);
             this.$axios
               .post("http://localhost:8003/user/login", params,
                 {
@@ -73,18 +59,19 @@
                     'Content-Type': 'application/x-www-form-urlencoded',
                   }
                 })
-              .then(function (result) {
+              .then(result => {
                 //请求成功不一定是登陆成功
-                console.log(result.data);//后台数据要
-
+                var sessionId = result.data;
+                if(sessionId!=null){
+                  this.$Message.success('Success!');
+                  this.$router.push("/test")
+                  //储存sessionId
+                  document.cookie=sessionId
+                }
               })
-              .catch(function (error) {
+              .catch(error => {
                 console.log("请求异常：" + error)
               });
-
-            this.$Message.success('Success!');
-
-
           } else {
             this.$Message.error('Fail!');
           }
@@ -96,7 +83,9 @@
 
 <style scoped>
   #form_login {
-    max-width: 40%;
+    width: 200px;
+    padding-top: 30px;
+    margin: auto;
   }
 
 </style>

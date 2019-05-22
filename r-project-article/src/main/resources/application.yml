@@ -21,3 +21,5 @@ spring:
       uri: mongodb://localhost:27017/admin #admin是数据库名，不是工程名
       username: user
       password: 123456
+  jpa:
+    show-sql: true #jpa显示sql

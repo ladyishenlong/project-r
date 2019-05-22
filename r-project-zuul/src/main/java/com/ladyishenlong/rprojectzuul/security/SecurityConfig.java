@@ -1,8 +1,10 @@
 package com.ladyishenlong.rprojectzuul.security;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.web.cors.CorsUtils;
 
 /**
@@ -26,6 +28,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginProcessingUrl("/user/login")
                 .successHandler(new SuccessHandler()).and()
+
+//                .exceptionHandling()
+//                .authenticationEntryPoint(
+//                        new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+
+//                .and()
                 .rememberMe()
                 .and().csrf().disable();//关闭csrf
     }
