@@ -1,0 +1,23 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+server:
+  port: 8005
+
+
+spring:
+  application:
+    name: r-project-article
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/JLCredit  #连接数据库
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  data:
+    mongodb: # 配置参考 https://www.jianshu.com/p/3a8c1904e807
+      uri: mongodb://localhost:27017/admin #admin是数据库名，不是工程名
+      username: user
+      password: 123456

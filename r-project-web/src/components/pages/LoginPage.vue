@@ -19,6 +19,10 @@
     <FormItem>
       <Button type="primary" @click="login('userModel')">login</Button>
     </FormItem>
+
+    <FormItem>
+      <Button type="success" @click="toTest">跳转test</Button>
+    </FormItem>
   </Form>
 </template>
 
@@ -46,6 +50,10 @@
       }
     },
     methods: {
+      toTest(){
+        this.$router.push("/test")
+      },
+
 
       login(userData) {
         console.log("检查");
@@ -53,10 +61,10 @@
           if (valid) {
             console.log("开始网络请求");
 
-
             const params = new URLSearchParams();
             params.append('username', '123');
             params.append('password', '123');
+
 
             this.$axios
               .post("http://localhost:8003/user/login", params,
@@ -66,7 +74,9 @@
                   }
                 })
               .then(function (result) {
-                alert("请求成功：" + result.headers.toString())
+                //请求成功不一定是登陆成功
+                console.log(result.data);//后台数据要
+
               })
               .catch(function (error) {
                 console.log("请求异常：" + error)
@@ -86,7 +96,7 @@
 
 <style scoped>
   #form_login {
-    max-width: 30%;
+    max-width: 40%;
   }
 
 </style>

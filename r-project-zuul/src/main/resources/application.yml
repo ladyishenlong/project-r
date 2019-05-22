@@ -20,9 +20,17 @@ zuul:
   ignoredServices: '*' #忽略所有未配置的service
 
   routes:
-    test1:
+    test:
       path: /test/**
       serviceId: r-project-test  #module test1余test2 做负载均衡 只要项目name一致
+
+    article:
+      path: /article/**
+      serviceId: r-project-article
+
+
+
+
 
 
 

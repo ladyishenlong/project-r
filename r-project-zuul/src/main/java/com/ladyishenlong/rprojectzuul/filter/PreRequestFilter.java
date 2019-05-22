@@ -15,7 +15,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 
 /**
  * 经过zuul请求时, zuul进行session的转发
@@ -67,6 +69,7 @@ public class PreRequestFilter extends ZuulFilter {
         log.info("--------------------------------------------------");
         log.info("请求的用户名：{}", auth.getName());
         log.info("请求地址：{}", request.getRequestURL());
+        log.info("sessionId: {}",request.getSession().getId());
         log.info("--------------------------------------------------");
         requestContext.addZuulRequestHeader("username",auth.getName());
         return null;
