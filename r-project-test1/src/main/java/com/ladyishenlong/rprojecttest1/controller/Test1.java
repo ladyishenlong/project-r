@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @RestController
 public class Test1 {
 
-    @GetMapping("hello")
+    @GetMapping("/hello")
     public String hello() {
         return "这里是 test1";
     }

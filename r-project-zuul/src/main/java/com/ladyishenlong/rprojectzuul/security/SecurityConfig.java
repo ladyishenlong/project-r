@@ -22,20 +22,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and().authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()//对preflight放行
+//                .antMatchers("/article/**").permitAll()
                 .antMatchers("/test/test/hello").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/user/login")
+
                 .successHandler(new SuccessHandler()).and()
 
-//                .exceptionHandling()
-//                .authenticationEntryPoint(
-//                        new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+                //要是没有登录，抛出401异常
+                .exceptionHandling()
+                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+                .and()
 
-//                .and()
                 .rememberMe()
-                .and().csrf().disable();//关闭csrf
+
+                //关闭csrf，如果不关闭可能导致post请求无效
+                //放跨域请求，如果不关闭需要添加csrf隐藏域
+                .and() .csrf().disable();
     }
 
 
