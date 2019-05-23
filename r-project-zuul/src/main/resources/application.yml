@@ -14,6 +14,9 @@ spring:
     timeout: 36000 #设置过期时间
 
 
+logging:
+  file:
+
 
 #zuul网关代理服务
 zuul:
@@ -27,8 +30,6 @@ zuul:
     article:
       path: /article/**
       serviceId: r-project-article
-
-
 
 
 

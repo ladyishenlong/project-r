@@ -63,8 +63,8 @@
                 //请求成功不一定是登陆成功
                 var sessionId = result.data;
                 if(sessionId!=null){
-                  this.$Message.success('Success!');
-                  this.$router.push("/test")
+                  this.$Message.success('登陆成功');
+                  this.$router.push("/articleIndex");
                   //储存sessionId
                   document.cookie=sessionId
                 }
