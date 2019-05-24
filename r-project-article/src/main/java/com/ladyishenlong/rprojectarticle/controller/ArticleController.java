@@ -5,6 +5,9 @@ import com.ladyishenlong.rprojectarticle.service.ArticleMapper;
 import com.ladyishenlong.rprojectarticle.service.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +43,8 @@ public class ArticleController {
         //没查到返回的不是null
         List<ArticleIndexModel> models = articleRepository.findAllByUsername(username);
 
+//        Pageable pageable= PageRequest.of(1,2);
+
         if (models == null || models.isEmpty()) {
             log.info("mongodb 没有数据 从数据库查询 ");
             models = articleMapper.findArticleIndexByUsername(username);
@@ -55,6 +60,22 @@ public class ArticleController {
     }
 
 
+
+//    public PageInfo<ArticleIndexModel> find(int page,int pageSize){
+//        PageHelper.startPage(page, pageSize);//改写语句实现分页查询
+//        List<ArticleIndexModel> all = articleMapper.findArticleIndexByUsername("123");
+//        PageInfo<ArticleIndexModel> info = new PageInfo<>(all);
+//        return info;
+//    }
+
+
+    /**
+     *  订单添加到mysql  -->  拿到该订单，发送消息到mq  --> mq监听端消费消息，
+     *  代码实现自己想要的数据模型，调用es保存
+     *
+     *
+     *
+     */
 
 
 

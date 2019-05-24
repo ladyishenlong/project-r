@@ -1,6 +1,8 @@
 package com.ladyishenlong.rprojectarticle.service;
 
 import com.ladyishenlong.rprojectarticle.model.ArticleIndexModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,6 @@ public interface ArticleRepository extends MongoRepository<ArticleIndexModel,Str
      List<ArticleIndexModel> findAllByUsername(String username);
 
 
+     Page<ArticleRepository> findAllByUsername(Pageable pageable,String username);
 
 }
