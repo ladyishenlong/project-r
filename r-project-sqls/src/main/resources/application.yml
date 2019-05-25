@@ -1,0 +1,28 @@
+server:
+  port: 8008
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+
+spring:
+  application:
+    name: r-project-sqls
+  datasource:
+    jlcredit:
+     url: jdbc:mysql://localhost:3307/JLCredit  #连接数据库
+     username: root
+     password: 123456
+     driver-class-name: com.mysql.cj.jdbc.Driver
+    log:
+     url: jdbc:mysql://localhost:3307/log  #连接数据库
+     username: root
+     password: 123456
+     driver-class-name: com.mysql.cj.jdbc.Driver
+    shop:
+      url: jdbc:mysql://localhost:3307/shop  #连接数据库
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+

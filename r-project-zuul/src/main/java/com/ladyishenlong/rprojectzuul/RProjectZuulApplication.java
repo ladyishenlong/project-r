@@ -9,8 +9,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /***
  * 所有测试的功能 放在test1 和 test2之中
+ * 所有服务全全部注册到注册中心
  *
- *
+ * 1. 使用zuul 作为网关代理服务
+ * 2. 使用feign 调用user服务获取用户信息
+ * 3. spring security 负责登录和验证
  */
 
 @EnableZuulProxy //启用网关路由

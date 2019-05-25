@@ -24,9 +24,4 @@ spring:
   jpa:
     show-sql: true #jpa显示sql
 
-pagehelper:
-  helper-dialect: mysql
-  reasonable: true
-  support-methods-arguments: true
-  params: count==countSql
-  page-size-zero: true
+

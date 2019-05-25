@@ -8,7 +8,7 @@ eureka:
 
 spring:
   application:
-    name: r-project-search
+    name: r-project-elasticsearch
   datasource:
     url: jdbc:mysql://localhost:3307/JLCredit  #连接数据库
     username: root

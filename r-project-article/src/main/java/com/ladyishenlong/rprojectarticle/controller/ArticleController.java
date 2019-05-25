@@ -61,25 +61,6 @@ public class ArticleController {
 
 
 
-//    public PageInfo<ArticleIndexModel> find(int page,int pageSize){
-//        PageHelper.startPage(page, pageSize);//改写语句实现分页查询
-//        List<ArticleIndexModel> all = articleMapper.findArticleIndexByUsername("123");
-//        PageInfo<ArticleIndexModel> info = new PageInfo<>(all);
-//        return info;
-//    }
-
-
-    /**
-     *  订单添加到mysql  -->  拿到该订单，发送消息到mq  --> mq监听端消费消息，
-     *  代码实现自己想要的数据模型，调用es保存
-     *
-     *
-     *
-     */
-
-
-
-
 
 
 
