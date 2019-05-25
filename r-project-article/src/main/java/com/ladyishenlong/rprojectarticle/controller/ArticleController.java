@@ -5,6 +5,7 @@ import com.ladyishenlong.rprojectarticle.service.ArticleMapper;
 import com.ladyishenlong.rprojectarticle.service.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -32,6 +33,20 @@ public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
 
+
+    /***
+     * @return
+     * jpa 分页查询
+     */
+    @GetMapping("/findArticleIndexByUsernameOnMongodb")
+    public ResponseEntity findArticleIndexByUsernameOnMongodb(@RequestParam("page") int page,
+                                                              @RequestParam("size") int size) {
+        //Sort sort = new Sort(Sort.Direction.DESC, "id");//根据id排序
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.ok(articleRepository.findByUsername( "123",pageable));
+    }
+
+
     /***
      * 可以将 mongodb 作为缓存而存在
      * @param httpServletRequest
@@ -39,11 +54,10 @@ public class ArticleController {
      */
     @GetMapping("/findArticleIndexByUsername")
     public List<ArticleIndexModel> findArticleIndexByUsername(HttpServletRequest httpServletRequest) {
-        String username = httpServletRequest.getHeader("username");
-        //没查到返回的不是null
-        List<ArticleIndexModel> models = articleRepository.findAllByUsername(username);
+//        String username = httpServletRequest.getHeader("username");
 
-//        Pageable pageable= PageRequest.of(1,2);
+        String username = "123";
+        List<ArticleIndexModel> models = articleRepository.findAllByUsername(username);
 
         if (models == null || models.isEmpty()) {
             log.info("mongodb 没有数据 从数据库查询 ");
@@ -53,15 +67,10 @@ public class ArticleController {
                 log.info("数据库中查询到了数据 保存到 mongodb 中");
                 articleRepository.saveAll(models);
             }
-
         } else log.info("mongodb 获取了数据：{}", models.size());
 
         return models;
     }
-
-
-
-
 
 
 }

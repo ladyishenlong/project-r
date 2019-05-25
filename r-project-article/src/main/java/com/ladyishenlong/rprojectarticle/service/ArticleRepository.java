@@ -11,14 +11,15 @@ import java.util.List;
 /**
  * @Author ruanchenhao
  * @Date 2019-05-22 14:48
+ * mongodb 类似 jpa的查询
  */
 @Service
-public interface ArticleRepository extends MongoRepository<ArticleIndexModel,String> {
+public interface ArticleRepository extends MongoRepository<ArticleIndexModel, String> {
 
 
-     List<ArticleIndexModel> findAllByUsername(String username);
+    List<ArticleIndexModel> findAllByUsername(String username);
 
 
-     Page<ArticleRepository> findAllByUsername(Pageable pageable,String username);
+    Page<ArticleIndexModel> findByUsername(String username,Pageable pageable);
 
 }
