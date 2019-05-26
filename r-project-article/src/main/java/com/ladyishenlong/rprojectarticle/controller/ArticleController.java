@@ -5,10 +5,8 @@ import com.ladyishenlong.rprojectarticle.service.ArticleMapper;
 import com.ladyishenlong.rprojectarticle.service.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +40,7 @@ public class ArticleController {
     public ResponseEntity findArticleIndexByUsernameOnMongodb(@RequestParam("page") int page,
                                                               @RequestParam("size") int size) {
         //Sort sort = new Sort(Sort.Direction.DESC, "id");//根据id排序
+        log.info("----测试----");
         Pageable pageable = PageRequest.of(page, size);
         return ResponseEntity.ok(articleRepository.findByUsername( "123",pageable));
     }

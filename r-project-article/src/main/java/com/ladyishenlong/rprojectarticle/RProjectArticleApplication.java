@@ -3,6 +3,7 @@ package com.ladyishenlong.rprojectarticle;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * 关于文章的服务 主要是用来练习数据库的操作
