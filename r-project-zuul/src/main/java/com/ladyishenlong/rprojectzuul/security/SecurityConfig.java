@@ -67,11 +67,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //第一个用户登录之后，同样的账号无法登录其他设备
                 .sessionManagement()
                 .maximumSessions(1)
+
                 //这句配置实现同样用户名登陆之后，之前的用户session过期
                 .sessionRegistry(sessionRegistry)
 
 //                .expiredUrl("/user/login")
-
         ;
     }
 
