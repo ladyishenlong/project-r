@@ -1,4 +1,4 @@
-package com.ladyishenlong.rprojectjava;
+package com.ladyishenlong.rprojectjava.thread;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -8,10 +8,10 @@ import java.util.concurrent.FutureTask;
 /**
  * @Author ruanchenhao
  * @Date 2019-05-28 09:10
- * 三种线程的创建方式
+ * java 三种线程的创建方式
  */
 @Slf4j
-public class ThreadDemo {
+public class ThreadJava {
 
 
     /**
@@ -59,15 +59,15 @@ public class ThreadDemo {
 
     /**
      * 实现Runnable和实现Callable接口的方式基本相同，不过是后者执行call()方法有返回值，后者线程执行体run()方法无返回值，因此可以把这两种方式归为一种这种方式与继承Thread类的方法之间的差别如下：
-     *
+     * <p>
      * 1、线程只是实现Runnable或实现Callable接口，还可以继承其他类。
-     *
+     * <p>
      * 2、这种方式下，多个线程可以共享一个target对象，非常适合多线程处理同一份资源的情形。
-     *
+     * <p>
      * 3、但是编程稍微复杂，如果需要访问当前线程，必须调用Thread.currentThread()方法。
-     *
+     * <p>
      * 4、继承Thread类的线程类不能再继承其他父类（Java单继承决定）。
-     *
+     * <p>
      * 注：一般推荐采用实现接口的方式来创建多线程
      */
     public void runThread() {
@@ -80,9 +80,9 @@ public class ThreadDemo {
 
         Thread thread3 = new Thread(futureTask);
         thread3.start();
-        try{
+        try {
             futureTask.get();//该方法会阻塞，到线程结束才能拿到
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
