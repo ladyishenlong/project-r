@@ -1,0 +1,30 @@
+server:
+  port: 8010
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+
+spring:
+  application:
+    name: r-project-config
+  cloud:
+    config:
+      server:
+        default-application-name: r-project-config
+
+        git:
+          uri:
+
+#  # 配置git仓库地址
+#  spring.cloud.config.server.git.uri=https://github.com/s***w*/myspringcloudconfig
+#  # 配置仓库路径
+#  spring.cloud.config.server.git.search-paths=myconfigpath
+#  # 配置仓库的分支
+#  spring.cloud.config.label=master
+
+
+
+
+
+
