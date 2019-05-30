@@ -13,8 +13,8 @@ spring:
       server:
         default-application-name: r-project-config
         git:
-          uri: https://github.com/ladyishenlong/project-r/tree/master/cloud-config
-          search-paths: testconfig
+          uri: https://github.com/ladyishenlong/project-r
+          search-paths: cloud-config
           default-label: master
 
           #公开仓库可以不填
