@@ -12,16 +12,15 @@ spring:
     config:
       server:
         default-application-name: r-project-config
-
         git:
-          uri:
+          uri: https://github.com/ladyishenlong/project-r/tree/master/cloud-config
+          search-paths: testconfig
+          default-label: master
 
-#  # 配置git仓库地址
-#  spring.cloud.config.server.git.uri=https://github.com/s***w*/myspringcloudconfig
-#  # 配置仓库路径
-#  spring.cloud.config.server.git.search-paths=myconfigpath
-#  # 配置仓库的分支
-#  spring.cloud.config.label=master
+          #公开仓库可以不填
+#          username:
+#          password:
+
 
 
 
