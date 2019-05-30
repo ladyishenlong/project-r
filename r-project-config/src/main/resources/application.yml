@@ -13,6 +13,7 @@ spring:
       server:
         default-application-name: r-project-config
         git:
+          #项目地址
           uri: https://github.com/ladyishenlong/project-r
           search-paths: cloud-config
           default-label: master
