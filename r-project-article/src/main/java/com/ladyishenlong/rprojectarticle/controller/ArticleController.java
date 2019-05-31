@@ -34,7 +34,7 @@ public class ArticleController {
 
     /***
      * @return
-     * jpa 分页查询
+     * jlcredit_jpa 分页查询
      */
     @GetMapping("/findArticleIndexByUsernameOnMongodb")
     public ResponseEntity findArticleIndexByUsernameOnMongodb(@RequestParam("page") int page,

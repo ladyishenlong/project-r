@@ -15,8 +15,10 @@ import javax.servlet.http.HttpSession;
 @RestController
 public class Test2 {
 
+    //这个值是从git的配置文件获得的参数
     @Value("${testConfig}")
     private String testConfig;
+
 
     @GetMapping("/getConfig")
     private String getConfig() {

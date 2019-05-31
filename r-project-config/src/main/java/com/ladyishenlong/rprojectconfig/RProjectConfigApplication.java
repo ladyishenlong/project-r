@@ -7,8 +7,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * spring cloud config 远程配置服务端
- *
- * 暂时未搭建成功
+ * 配置服务中心
+ * <p>
+ * 作为其他服务读取配置信息的服务
  */
 @EnableEurekaClient
 @EnableConfigServer

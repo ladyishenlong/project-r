@@ -6,6 +6,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
@@ -19,12 +20,13 @@ import javax.sql.DataSource;
 public class DataSourceConfig {
 
     @Primary //主数据库
-    @Bean(name = "JLCreditDataSource")
-    @Qualifier("JLCreditDataSource")
+    @Bean(name = "jlCreditDataSource")//将该对象放入spring容器
+    @Qualifier("jlCreditDataSource")//寻找spring容器该名字的对象
     @ConfigurationProperties(prefix = "spring.datasource.jlcredit")
     public DataSource JLCreditDataSource() {
         return DataSourceBuilder.create().build();
     }
+
 
     @Bean(name = "logDataSource")
     @Qualifier("logDataSource")
@@ -33,11 +35,12 @@ public class DataSourceConfig {
         return DataSourceBuilder.create().build();
     }
 
-    @Bean(name = "shopDataSource")
-    @Qualifier("shopDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.shop")
-    public DataSource shopDataSource() {
-        return DataSourceBuilder.create().build();
-    }
+
+//    @Bean(name = "shopDataSource")
+//    @Qualifier("shopDataSource")
+//    @ConfigurationProperties(prefix = "spring.shop.datasource")
+//    public DataSource shopDataSource() {
+//        return DataSourceBuilder.create().build();
+//    }
 
 }
