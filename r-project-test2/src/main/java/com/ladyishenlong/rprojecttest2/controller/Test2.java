@@ -1,5 +1,7 @@
 package com.ladyishenlong.rprojecttest2.controller;
 
+import com.ladyishenlong.rprojecttest2.Config;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,19 +14,17 @@ import javax.servlet.http.HttpSession;
  * @Author ruanchenhao
  * @Date 2019-05-16 10:31
  */
-//@RefreshScope //自动刷新配置文件
 @RequestMapping("/test")
 @RestController
 public class Test2 {
 
-    //这个值是从git的配置文件获得的参数
-    @Value("${testConfig}")
-    private String testConfig;
+    @Autowired
+    private Config config;
 
 
     @GetMapping("/getConfig")
     private String getConfig() {
-        return testConfig;
+        return config.getTestConfig();
     }
 
 
