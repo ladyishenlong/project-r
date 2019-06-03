@@ -13,7 +13,12 @@ spring:
     port: 6379
     timeout: 36000 #设置过期时间
 
-#zuul的包中已经导入了熔断机制
+logging:
+  config: classpath:logback-spring.xml
+#  file:
+#    max-history: 10
+#  #生成日志文件并且保存在该地址
+#  path:  /Users/ruanchenhao/log
 
 
 
