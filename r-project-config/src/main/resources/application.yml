@@ -5,10 +5,15 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8000/eureka/
 
+
 spring:
   application:
     name: r-project-config
   cloud:
+    bus:
+      enabled: true
+      trace:
+        enabled: true
     config:
       server:
         default-application-name: r-project-config
@@ -19,11 +24,20 @@ spring:
           default-label: master
 
           #公开仓库可以不填
-#          username:
-#          password:
+          #          username:
+          #          password:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
 
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
 
 
 
