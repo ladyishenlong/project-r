@@ -25,7 +25,6 @@ logging:
 #zuul网关代理服务
 zuul:
   ignoredServices: '*' #忽略所有未配置的service
-
   routes:
     test:
       path: /test/**
@@ -34,6 +33,29 @@ zuul:
     article:
       path: /article/**
       serviceId: r-project-article
+
+
+  #网关配置限流的工具
+  ratelimit:
+    enabled: true #启用限流
+    behind-proxy: true #在代理之后
+    repository: redis #储存类型
+    key-prefix: r-project-zuul #储存key的前缀
+    default-policy: #全局限流策略 3秒内不超过2次，两次请求时间要小于1秒
+      limit: 2
+      quota: 1
+      refresh-interval: 3
+
+    #对于test服务的特殊限流配置
+    policies:
+      test:  #10秒内请求次数不能超过5次，这5次请求时间总时长不能大于5s
+      limit: 5
+      quota: 5
+      efresh-interval: 10
+
+
+
+
 
 
 

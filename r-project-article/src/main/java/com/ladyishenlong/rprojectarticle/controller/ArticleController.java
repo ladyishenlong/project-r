@@ -19,6 +19,8 @@ import java.util.List;
 /**
  * @Author ruanchenhao
  * @Date 2019-05-22 10:04
+ * <p>
+ * mybatis 调用存储过程参考 https://blog.csdn.net/feng_tai_jun/article/details/80681224
  */
 @Slf4j
 @RestController
@@ -42,7 +44,7 @@ public class ArticleController {
         //Sort sort = new Sort(Sort.Direction.DESC, "id");//根据id排序
         log.info("----测试----");
         Pageable pageable = PageRequest.of(page, size);
-        return ResponseEntity.ok(articleRepository.findByUsername( "123",pageable));
+        return ResponseEntity.ok(articleRepository.findByUsername("123", pageable));
     }
 
 
