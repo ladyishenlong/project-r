@@ -95,6 +95,12 @@ alter table student.student drop column name;
 alter table student.student add baoju varchar(20);
 
 
+# 如果不存在就插入，如果存在就更新
+insert into article_index(id, username, title, author)
+values ('89757', '123', '编号', '圣所')
+on duplicate key update id='89757',username='123',title='编号',author='圣所'
+
+
 
 
 
