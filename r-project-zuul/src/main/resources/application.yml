@@ -48,7 +48,7 @@ zuul:
 
     #对于test服务的特殊限流配置
     policies:
-      test:  #10秒内请求次数不能超过5次，这5次请求时间总时长不能大于5s
+      article:  #10秒内请求次数不能超过5次，这5次请求时间总时长不能大于5s
       limit: 5
       quota: 5
       efresh-interval: 10
