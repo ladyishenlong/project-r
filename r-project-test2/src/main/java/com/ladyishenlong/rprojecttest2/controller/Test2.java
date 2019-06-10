@@ -28,7 +28,7 @@ public class Test2 {
     }
 
 
-    @GetMapping("hello")
+    @GetMapping("/hello")
     public String hello() {
         return "这里是 test2";
     }

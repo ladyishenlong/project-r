@@ -1,0 +1,15 @@
+server:
+  port: 8013
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+
+spring:
+  application:
+    name: r-project-hystrix
+feign:
+  hystrix:
+    enabled: true
