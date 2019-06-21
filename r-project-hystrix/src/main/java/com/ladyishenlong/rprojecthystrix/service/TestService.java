@@ -12,5 +12,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface TestService {
 
     @GetMapping("/test/hello")
-    String hello();
+     String hello();
 }

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
+
 /**
  * @Author ruanchenhao
  * @Date 2019-06-10 17:19
@@ -23,5 +25,6 @@ public class HystrixController {
     public String hello(){
         return testService.hello();
     }
+
 
 }
