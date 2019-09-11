@@ -7,6 +7,7 @@ import com.ladyishenlong.rprojectsqls.jpa.log_jpa.LogJpaImpl;
 import com.ladyishenlong.rprojectsqls.model.jlcredit_model.ArticleIndexModel;
 import com.ladyishenlong.rprojectsqls.model.log_model.LogModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,16 +36,16 @@ public class DatasController {
 
     @GetMapping("/getArticleIndexList")
     public Object getArticleIndexList() {
-
         return articleIndexJpaImpl.test();
-
 //        return articleIndexJpa.findAllByUsername("123");
     }
 
     @GetMapping("/getLog")
     public Object getLog() {
-        return logjpaImpl.queryTest();
+        return logjpaImpl.queryTest("1");
 //        return logJpa.findAll();
     }
+
+
 
 }

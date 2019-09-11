@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,11 +27,11 @@ public class LogJpaImpl  {
     private EntityManager entityManager;
 
 
-    public Object queryTest() {
+    public Object queryTest(String id) {
+        String sql="select * from log_record where id = "+id;
         List<LogModel> logModels = entityManager
-                .createNativeQuery("select * from log_record")
+                .createNativeQuery(sql)
                 .getResultList();
-
         return logModels;
     }
 
