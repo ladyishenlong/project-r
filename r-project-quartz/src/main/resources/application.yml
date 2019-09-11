@@ -1,0 +1,28 @@
+server:
+  port: 8014
+
+spring:
+  application:
+    name: r-project-quartz
+#  quartz:
+#    properties: #quartz的配置
+#      org:
+#        quartz:
+#          scheduler:
+#            instanceName: clusteredScheduler
+#            instanceId: AUTO
+#          jobStore:
+#            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+#            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+#            tablePrefix: QRTZ_
+#            isClustered: true
+#            clusterCheckinInterval: 10000
+#            useProperties: false
+#          threadPool:
+#            class: org.quartz.simpl.SimpleThreadPool
+#            threadCount: 5
+#            threadPriority: 5
+#            threadsInheritContextClassLoaderOfInitializingThread: true
+
+          #任务信息保存至数据库
+#          job-store-type: jdbc
