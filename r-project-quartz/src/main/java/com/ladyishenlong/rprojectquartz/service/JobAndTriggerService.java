@@ -1,8 +1,6 @@
 package com.ladyishenlong.rprojectquartz.service;
 
-import org.quartz.JobKey;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
+import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +21,5 @@ public class JobAndTriggerService {
     public void resumeJob(String jobClassName, String jobGroupName) throws SchedulerException {
         scheduler.resumeJob(JobKey.jobKey(jobClassName, jobGroupName));
     }
-
 
 }

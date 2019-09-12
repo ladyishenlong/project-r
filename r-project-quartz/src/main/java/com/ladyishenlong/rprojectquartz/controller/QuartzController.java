@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/job")
 public class QuartzController {
 
-
     @Autowired
     private JobAndTriggerService jobAndTriggerService;
 
     /**
      * 暂停定时任务
+     *
      * @param jobClassName
      * @param jobGroupName
      * @throws SchedulerException
@@ -37,14 +37,16 @@ public class QuartzController {
 
     /**
      * 重启定时任务
+     *
      * @param jobClassName
      * @param jobGroupName
      * @throws SchedulerException
      */
     @GetMapping("/resume")
     public void resumeJob(@RequestParam("jobClassName") String jobClassName,
-                         @RequestParam("jobGroupName") String jobGroupName)
+                          @RequestParam("jobGroupName") String jobGroupName)
             throws SchedulerException {
         jobAndTriggerService.resumeJob(jobClassName, jobGroupName);
     }
+
 }
