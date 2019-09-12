@@ -1,0 +1,24 @@
+server:
+  port: 8007
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+
+spring:
+  application:
+    name: r-project-elasticsearch
+  datasource:
+    url: jdbc:mysql://localhost:3307/JLCredit  #连接数据库
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    elasticsearch:
+      cluster-name: docker-cluster
+      cluster-nodes: localhost:9300
+  jpa:
+    show-sql: true #控制台打印log
+
+

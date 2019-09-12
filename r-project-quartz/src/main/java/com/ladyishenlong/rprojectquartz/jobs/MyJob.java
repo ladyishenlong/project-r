@@ -16,6 +16,6 @@ import sun.rmi.runtime.Log;
 public class MyJob extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        log.info("---- 执行定时任务的逻辑 ----");
+        log.info("---- 这里是执行定时任务的逻辑的地方 ----");
     }
 }

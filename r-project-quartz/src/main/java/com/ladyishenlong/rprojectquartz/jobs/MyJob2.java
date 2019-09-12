@@ -14,6 +14,6 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 public class MyJob2 extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        log.info("---- 这里是执行定时任务的逻辑2 ----");
+        log.info("---- 这里是执行定时任务的逻辑2的地方 ----");
     }
 }

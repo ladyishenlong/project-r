@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2019/9/11 4:37 下午
  */
 @Configuration
-public class QuartzConfig {
+public class QuartzTaskConfig {
 
     @Bean
     public JobDetail uploadTaskDetail() {
         return JobBuilder
-                .newJob(MyJob.class).withIdentity("MyJob")
+                .newJob(MyJob.class).withIdentity("MyJob","Jobs")
                 .storeDurably()
                 .build();
     }
@@ -27,7 +27,7 @@ public class QuartzConfig {
     @Bean
     public JobDetail uploadTaskDetail2() {
         return JobBuilder
-                .newJob(MyJob2.class).withIdentity("MyJob2")
+                .newJob(MyJob2.class).withIdentity("MyJob2","Jobs")
                 .storeDurably()
                 .build();
     }

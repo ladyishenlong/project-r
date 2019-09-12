@@ -4,25 +4,42 @@ server:
 spring:
   application:
     name: r-project-quartz
-#  quartz:
-#    properties: #quartz的配置
-#      org:
-#        quartz:
-#          scheduler:
-#            instanceName: clusteredScheduler
-#            instanceId: AUTO
-#          jobStore:
-#            class: org.quartz.impl.jdbcjobstore.JobStoreTX
-#            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
-#            tablePrefix: QRTZ_
-#            isClustered: true
-#            clusterCheckinInterval: 10000
-#            useProperties: false
-#          threadPool:
-#            class: org.quartz.simpl.SimpleThreadPool
-#            threadCount: 5
-#            threadPriority: 5
-#            threadsInheritContextClassLoaderOfInitializingThread: true
+  datasource:
+    url: jdbc:mysql://localhost:3307/QUARTZ_TABLE  #连接user数据库
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
-          #任务信息保存至数据库
-#          job-store-type: jdbc
+  jpa:
+    show-sql: true
+
+  quartz:
+    #持久化方式,将定时任务信息储存到数据库
+    job-store-type: jdbc
+    #初始化表结构
+    jdbc:
+      initialize-schema: never
+    #由配置创建的作业是否覆盖从持久性作业存储中读取的作业
+    overwrite-existing-jobs: false
+    #相关属性配置
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: clusteredScheduler
+            instanceId: AUTO
+          jobStore:
+            # 数据源名称
+            dataSource: DefaultQuartzScheduler
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 1000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+
