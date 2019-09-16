@@ -12,14 +12,10 @@ import java.io.Serializable;
  * @Date 2019/9/12 4:22 下午
  */
 @Data
-@Embeddable
 public class Key implements Serializable {
 
-    @Column(name = "SCHED_NAME")
     private String schedName;
-    @Column(name = "TRIGGER_NAME")
     private String triggerName;
-    @Column(name = "TRIGGER_GROUP")
     private String triggerGroup;
 
 }

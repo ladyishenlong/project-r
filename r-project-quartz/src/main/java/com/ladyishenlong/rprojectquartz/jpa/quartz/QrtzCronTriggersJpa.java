@@ -9,4 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Date 2019/9/12 4:25 下午
  */
 public interface QrtzCronTriggersJpa extends JpaRepository<QrtzCronTriggersTable, Key> {
+
+
+
 }

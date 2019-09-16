@@ -28,7 +28,7 @@ public class QrtzCronTriggersDao {
     public Object test() {
         String sql = "select * from QRTZ_CRON_TRIGGERS";
         List<QrtzCronTriggersTable> articleIndexModels = entityManager
-                .createNativeQuery(sql)
+                .createNativeQuery(sql,QrtzCronTriggersTable.class)
                 .getResultList();
         return articleIndexModels;
     }

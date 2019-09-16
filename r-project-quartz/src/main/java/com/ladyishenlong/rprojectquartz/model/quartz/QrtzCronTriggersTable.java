@@ -12,10 +12,18 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name = "QRTZ_CRON_TRIGGERS")
+@IdClass(Key.class)
 public class QrtzCronTriggersTable implements Serializable {
 
-    @EmbeddedId
-    private Key id;
+    @Id
+    @Column(name = "SCHED_NAME")
+    private String schedName;
+    @Id
+    @Column(name = "TRIGGER_NAME")
+    private String triggerName;
+    @Id
+    @Column(name = "TRIGGER_GROUP")
+    private String triggerGroup;
 
     @Column(name = "TIME_ZONE_ID")
     private String timeZoneId;
